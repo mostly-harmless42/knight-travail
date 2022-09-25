@@ -7,8 +7,7 @@ def knight_travail(start, goal)
   arr = [start]
 
   arr.each do |current| 
-    moves = current.move_list
-    moves.each do |move| 
+    current.move_list.each do |move| 
       return move.path_list if move == goal
       arr << move
     end
@@ -46,7 +45,7 @@ class Square
   def path_list
     path = [self]
     path.each { |step| path << step.prev if step.prev }
-    path.reverse  
+        .reverse  
   end
 
 end
