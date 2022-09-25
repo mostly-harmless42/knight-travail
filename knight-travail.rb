@@ -8,7 +8,7 @@ def knight_travail(start, goal)
 
   arr.each do |current| 
     current.move_list.each do |move| 
-      return move.path_list if move == goal
+      return move.path_list if move.coord == goal.coord
       arr << move
     end
   end
@@ -24,17 +24,8 @@ class Square
     @prev = prev
   end
 
-  def ==(other)
-    @coord == other.coord
-  end
-
-  def to_s
-    coord.to_s
-  end
-
 
   def move_list()
-    #first line just for fun, = [[1,2], [2,1], [1,-2], [2,-1], [-1,2], [-2,1], [-1,-2], [-2,-1]]
     (0..7).map { |i| [2 ** (i % 2) * ((-1) ** (i / 4)), 2 ** ((i + 1) % 2) * ((-1) ** (i / 2 % 2))] }
           .map { |a, b| [@coord[0] + a, @coord[1] + b] }
           .select { |a, b| a >= 0 and a < 8 and b >= 0 and b < 8 }
@@ -45,19 +36,11 @@ class Square
   def path_list
     path = [self]
     path.each { |step| path << step.prev if step.prev }
-        .reverse  
+        .map { |step| step.coord}
+        .reverse
   end
 
 end
 
 
-puts knight_travail([0,0], [7,7])
-
-# outputs => 
-# [0, 0]
-# [1, 2]
-# [2, 4]
-# [3, 6]
-# [5, 7]
-# [6, 5]
-# [7, 7]
+knight_travail([0,0], [7,7]).each { |c| print c }
