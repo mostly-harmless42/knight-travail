@@ -2,13 +2,12 @@
 def knight_travail(start, goal)
 
   start = Square.new(start)
-  goal = Square.new(goal)
 
   arr = [start]
 
   arr.each do |current| 
     current.move_list.each do |move| 
-      return move.path_list if move.coord == goal.coord
+      return move.path_list if move.coord == goal
       arr << move
     end
   end
