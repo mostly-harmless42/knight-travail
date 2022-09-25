@@ -39,8 +39,4 @@ class Square
 end
 
 
-<<<<<<< HEAD
-100.times { knight_travail([0,0], [7,7]).each { |c| print c } }
-=======
-knight_travail([0,0], [7,7]).each { |c| print c }
->>>>>>> 4fe84964974c9f5039cee12dacfd6232494e4169
+print knight_travail([0,0], [7,7])
