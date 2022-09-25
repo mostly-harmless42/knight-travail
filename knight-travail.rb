@@ -1,3 +1,4 @@
+
 def knight_travail(start, goal)
 
   start = Square.new(start)
