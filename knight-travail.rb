@@ -35,15 +35,11 @@ class Square
 
 
   def move_list()
-
-    # just for fun, ml = [[1,2], [2,1], [1,-2], [2,-1], [-1,2], [-2,1], [-1,-2], [-2,-1]]
-    ml = (0..7).map { |i| [2 ** (i % 2) * ((-1) ** (i / 4)), 2 ** ((i + 1) % 2) * ((-1) ** (i / 2 % 2))] }
-
-    ml = ml.map { |a, b| [@coord[0] + a, @coord[1] + b] }
-    ml = ml.select { |a, b| a >= 0 and a < 8 and b >= 0 and b < 8 }
-    ml = ml.map { |coord| Square.new(coord, self) }
-
-    ml
+    #first line just for fun, = [[1,2], [2,1], [1,-2], [2,-1], [-1,2], [-2,1], [-1,-2], [-2,-1]]
+    (0..7).map { |i| [2 ** (i % 2) * ((-1) ** (i / 4)), 2 ** ((i + 1) % 2) * ((-1) ** (i / 2 % 2))] }
+          .map { |a, b| [@coord[0] + a, @coord[1] + b] }
+          .select { |a, b| a >= 0 and a < 8 and b >= 0 and b < 8 }
+          .map { |coord| Square.new(coord, self) }
   end
 
 
@@ -54,7 +50,6 @@ class Square
   end
 
 end
-
 
 
 puts knight_travail([0,0], [7,7])
