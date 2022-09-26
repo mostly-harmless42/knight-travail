@@ -5,7 +5,7 @@ def knight_travail(start, goal)
   def move_list(coord, trav_arr)
     [[1,2], [2,1], [-1,2], [-2,1], [1,-2], [2,-1], [-1,-2], [-2,-1]]
       .map { |a, b| [coord[0] + a, coord[1] + b] }
-      .select { |a, b| a >= 0 and a < 8 and b >= 0 and b < 8 }
+      .reject { |a, b| a < 0 or a > 7 or b < 0 or b > 7 }
       .reject { |co| trav_arr.include?(co) }
   end
 
